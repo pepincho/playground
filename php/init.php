@@ -199,9 +199,110 @@ Variable names are case-sensitive
   $y = array("b" => "green", "a" => "red");
   var_dump($x === $y); # false
 ?>
+<br />
 
 <!-- PHP if...else...elseif Statements -->
 
+<?php
+  $t = date("H");
+
+  if ($t < "10") {
+    echo "Have a good morning!";
+  } elseif ($t < "20") {
+    echo "Have a good day!";
+  } else {
+    echo "Have a good night!";
+  }
+  echo $t;
+?>
+<br />
+
+<!-- PHP Switch -->
+
+<?php
+  $favcolor = "blue";
+
+  switch ($favcolor) {
+    case "red":
+      echo "Your favorite color is red!";
+      break;
+    case "blue":
+      echo "Your favorite color is blue!";
+      break;
+    case "green":
+      echo "Your favorite color is green!";
+      break;
+    default:
+      echo "Your favorite color is neither red, blue, nor green!";
+  }
+?>
+<br />
+
+<!-- PHP Loops -->
+
+<?php
+  $colors = array("red", "green", "blue", "yellow");
+
+  foreach ($colors as $value) {
+    echo "$value <br>";
+  }
+?>
+<br />
+
+<!-- PHP Functions -->
+Function names are NOT case-sensitive. <br />
+
+<?php
+  function sum($x, $y = 0) {
+    $z = $x + $y;
+    return $z;
+  }
+
+  echo "5 + _ = " . sum(5) . "<br>";
+  echo "7 + 13 = " . sum(7, 13) . "<br>";
+?>
+<br />
+
+<!-- PHP Arrays -->
+In PHP, there are three types of arrays: <br />
+Indexed arrays - Arrays with a numeric index <br />
+Associative arrays - Arrays with named keys <br />
+Multidimensional arrays - Arrays containing one or more arrays <br />
+
+<?php
+  $cars = array("Volvo", "BMW", "Toyota");
+  echo count($cars);
+  echo "<br />";
+  $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+  foreach($age as $x => $x_value) {
+    echo "Key=" . $x . ", Value=" . $x_value;
+    echo "<br>";
+  }
+?>
+<br />
+
+<!-- PHP Sorting Arrays -->
+sort() - sort arrays in ascending order <br />
+rsort() - sort arrays in descending order <br />
+asort() - sort associative arrays in ascending order, according to the value <br />
+ksort() - sort associative arrays in ascending order, according to the key <br />
+arsort() - sort associative arrays in descending order, according to the value <br />
+krsort() - sort associative arrays in descending order, according to the key <br />
+<br />
+
+<!-- PHP Global Variables - Superglobals -->
+Several predefined variables in PHP are "superglobals", which means that they are always accessible,
+regardless of scope - and you can access them from any function, class or file without having to do anything special. <br />
+The PHP superglobal variables are: <br />
+<b>$GLOBALS</b> - PHP stores all global variables in an array called $GLOBALS[index]. The index holds the name of the variable. <br />
+<b>$_SERVER</b> - a PHP super global variable which holds information about headers, paths, and script locations. <br />
+<b>$_REQUEST</b> - is used to collect data after submitting an HTML form. <br />
+<b>$_POST</b> - is widely used to collect form data after submitting an HTML form with method="post". $_POST is also widely used to pass variables. <br />
+<b>$_GET</b> - can also be used to collect form data after submitting an HTML form with method="get" and can also collect data sent in the URL. <br />
+<b>$_FILES</b> <br />
+<b>$_ENV</b> <br />
+<b>$_COOKIE</b> <br />
+<b>$_SESSION</b> <br />
 
 
 </body>

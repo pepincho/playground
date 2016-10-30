@@ -1,3 +1,3 @@
 # playground
 
-# Structure and interpretation of computer programs
+# Structure and Interpretation of Computer Programs

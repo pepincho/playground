@@ -9,7 +9,7 @@ import {
 
 export default class SignUpScreen extends Component<{}> {
 
-  handlegoToSignInPress = () => {
+  handleGoToSignInPress = () => {
     this.props.navigation.navigate('SignInScreen', {}, null);
   };
 
@@ -22,7 +22,7 @@ export default class SignUpScreen extends Component<{}> {
 
         <Text
           style={styles.instructions}
-          onPress={this.handlegoToSignInPress}
+          onPress={this.handleGoToSignInPress}
         >
           Go to SignInScreen
         </Text>

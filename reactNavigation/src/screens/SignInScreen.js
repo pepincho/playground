@@ -9,8 +9,12 @@ import {
 
 export default class SignInScreen extends Component<{}> {
 
-  handlegoToSignUpPress = () => {
+  handleGoToSignUpPress = () => {
     this.props.navigation.navigate('SignUpScreen', {}, null);
+  };
+
+  handleGoToServicesPress = () => {
+    this.props.navigation.navigate('ListServicesScreen', {}, null);
   };
 
   render() {
@@ -22,9 +26,16 @@ export default class SignInScreen extends Component<{}> {
 
         <Text
           style={styles.instructions}
-          onPress={this.handlegoToSignUpPress}
+          onPress={this.handleGoToSignUpPress}
         >
           Go to SignUpScreen
+        </Text>
+
+        <Text
+          style={styles.services}
+          onPress={this.handleGoToServicesPress}
+        >
+          Go to List Services Screen!!!
         </Text>
 
       </View>
@@ -49,6 +60,13 @@ const styles = StyleSheet.create({
     color: '#333333',
     fontSize: 20,
     backgroundColor: 'red',
+    marginBottom: 5,
+  },
+  services: {
+    textAlign: 'center',
+    color: '#333333',
+    fontSize: 20,
+    backgroundColor: 'blue',
     marginBottom: 5,
   },
 });

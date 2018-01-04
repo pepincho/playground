@@ -5,13 +5,14 @@ import {
   Text,
   View
 } from 'react-native';
-import { StackNavigator, NavigationActions } from 'react-navigation';
+// import { StackNavigator, NavigationActions } from 'react-navigation';
 
 
 import SignInScreen from './SignInScreen';
 
 
 export default class StartUpScreen extends Component<{}> {
+
   render() {
 
     // const screen = SignInScreen;

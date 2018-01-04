@@ -60,13 +60,54 @@ export const ListServicesStack = StackNavigator(
       screen: BookAppointmentScreen,
       navigationOptions: {
         title: 'Book Appointment',
+        tabBarVisible: false,
       },
     },
   },
   {
     initialRouteName: 'ListServicesScreen',
-    // headerMode: 'none',
-    // mode: 'card',
+  }
+);
+
+export const AppointmentsStack = StackNavigator(
+  {
+    AppointmentsScreen: {
+      screen: AppointmentsScreen,
+      navigationOptions: {
+        title: 'My Appointments',
+      },
+    },
+  },
+  {
+    initialRouteName: 'AppointmentsScreen',
+  }
+);
+
+export const ProfileStack = StackNavigator(
+  {
+    UpdateProfileScreen: {
+      screen: UpdateProfileScreen,
+      navigationOptions: {
+        title: 'Profile',
+      },
+    },
+  },
+  {
+    initialRouteName: 'UpdateProfileScreen',
+  }
+);
+
+export const InfoStack = StackNavigator(
+  {
+    SalonInfoScreen: {
+      screen: SalonInfoScreen,
+      navigationOptions: {
+        title: 'Info',
+      },
+    },
+  },
+  {
+    initialRouteName: 'SalonInfoScreen',
   }
 );
 
@@ -80,19 +121,19 @@ export const Tabs = TabNavigator(
       },
     },
     AppointmentsScreen: {
-      screen: AppointmentsScreen,
+      screen: AppointmentsStack,
       navigationOptions: {
-        tabBarLabel: 'Appointments',
+        tabBarLabel: 'My Appointments',
       },
     },
     UpdateProfileScreen: {
-      screen: UpdateProfileScreen,
+      screen: ProfileStack,
       navigationOptions: {
         tabBarLabel: 'Profile',
       },
     },
     SalonInfoScreen: {
-      screen: SalonInfoScreen,
+      screen: InfoStack,
       navigationOptions: {
         tabBarLabel: 'Info',
       },

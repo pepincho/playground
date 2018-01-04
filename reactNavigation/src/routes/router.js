@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  Platform
+} from 'react-native';
 
 import {
   StackNavigator,
@@ -12,6 +15,8 @@ import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 
 import ListServicesScreen from '../screens/ListServicesScreen';
+import BookAppointmentScreen from '../screens/BookAppointmentScreen';
+
 import AppointmentsScreen from '../screens/AppointmentsScreen';
 import UpdateProfileScreen from '../screens/UpdateProfileScreen';
 import SalonInfoScreen from '../screens/SalonInfoScreen';
@@ -24,15 +29,15 @@ export const AuthStack = StackNavigator(
     },
     SignInScreen: {
       screen: SignInScreen,
-      navigationOptions: ({navigation}) => ({
-        header: null,
-      }),
+      // navigationOptions: ({navigation}) => ({
+      //   header: null,
+      // }),
     },
     SignUpScreen: {
       screen: SignUpScreen,
-      navigationOptions: ({navigation}) => ({
-        header: null,
-      }),
+      // navigationOptions: ({navigation}) => ({
+      //   header: null,
+      // }),
     },
   },
   {
@@ -47,11 +52,20 @@ export const ListServicesStack = StackNavigator(
   {
     ListServicesScreen: {
       screen: ListServicesScreen,
+      navigationOptions: {
+        title: 'Services',
+      },
+    },
+    BookAppointmentScreen: {
+      screen: BookAppointmentScreen,
+      navigationOptions: {
+        title: 'Book Appointment',
+      },
     },
   },
   {
     initialRouteName: 'ListServicesScreen',
-    headerMode: 'none',
+    // headerMode: 'none',
     // mode: 'card',
   }
 );
@@ -83,6 +97,17 @@ export const Tabs = TabNavigator(
         tabBarLabel: 'Info',
       },
     },
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'ListServicesScreen',
+    swipeEnabled: false,
+    animationEnabled: false,
+    lazy: true,
+    tabBarOptions: {
+      // showLabel: false,
+      activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
+    },
   }
 );
 
@@ -95,9 +120,6 @@ export const Root = StackNavigator(
     Tabs: {
       screen: Tabs,
     },
-    // Services: {
-    //   screen: ServicesStack,
-    // }
   },
   {
     mode: 'modal',

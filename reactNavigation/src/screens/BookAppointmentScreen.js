@@ -6,28 +6,15 @@ import {
 } from 'react-native';
 
 
-export default class ListServicesScreen extends Component<{}> {
-
-  handleGoToBookAppointment = () => {
-    this.props.navigation.navigate('BookAppointmentScreen', {}, null);
-  };
-
+export default class BookAppointmentScreen extends Component<{}> {
 
   render() {
 
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          List Services SCREEN!
+          Book Appointment SCREEN!
         </Text>
-
-        <Text
-          style={styles.instructions}
-          onPress={this.handleGoToBookAppointment}
-        >
-          Go to Book Appointment Screen...
-        </Text>
-
       </View>
     );
   }

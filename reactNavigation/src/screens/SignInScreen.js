@@ -3,19 +3,28 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 
 export default class SignInScreen extends Component<{}> {
+
+  handlegoToSignUpPress = () => {
+    this.props.navigation.navigate('SignUpScreen', {}, null);
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to SignInScreen!
         </Text>
-        <Text style={styles.instructions}>
-          Go to SignUpScreen...
+
+        <Text
+          style={styles.instructions}
+          onPress={this.handlegoToSignUpPress}
+        >
+          Go to SignUpScreen
         </Text>
 
       </View>
@@ -38,6 +47,8 @@ const styles = StyleSheet.create({
   instructions: {
     textAlign: 'center',
     color: '#333333',
+    fontSize: 20,
+    backgroundColor: 'red',
     marginBottom: 5,
   },
 });

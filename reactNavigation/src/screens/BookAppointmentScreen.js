@@ -15,6 +15,12 @@ export default class BookAppointmentScreen extends Component<{}> {
         <Text style={styles.welcome}>
           Book Appointment SCREEN!
         </Text>
+
+        <Text
+          onPress={() => this.props.navigation.goBack()}
+        >
+          Go Back!
+        </Text>
       </View>
     );
   }

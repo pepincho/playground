@@ -1,34 +1,29 @@
 import React, { Component } from 'react';
-import { View, Platform, AppRegistry } from 'react-native';
+import { View, StatusBar, TouchableOpacity, Text } from 'react-native';
+import ScalingDrawer from 'react-native-scaling-drawer';
 import {
-  StackNavigator,
-  TabNavigator,
-  StackRouter,
-  createNavigator,
-  createNavigationContainer,
   addNavigationHelpers,
 } from 'react-navigation';
 
-import ScalingDrawer from './elements/ScalingDrawer';
-
-import LeftMenu from './components/LeftMenu';
-import AppointmentsRouter from './routes/IntroStack';
+import LeftMenu from './LeftMenu';
 
 let defaultScalingDrawerConfig = {
-  scalingFactor: 0.8,
-  minimizeFactor: 0.7,
-  swipeOffset: 0
+  scalingFactor: 0.6,
+  minimizeFactor: 0.6,
+  swipeOffset: 20
 };
 
-class CustomDrawerView extends Component {
+export default class DrawerView extends Component {
   constructor(props) {
+    console.log("MINHDEBUG", props);
     super(props);
   }
 
   componentWillReceiveProps(nextProps) {
     /** Active Drawer Swipe **/
-    if (nextProps.navigation.state.index === 0)
+    if (nextProps.navigation.state.index === 0) {
       this._drawer.blockSwipeAbleDrawer(false);
+    }
 
     if (
       nextProps.navigation.state.index === 0
@@ -45,11 +40,7 @@ class CustomDrawerView extends Component {
   }
 
   render() {
-    const {
-      routes,
-      index
-    } = this.props.navigation.state;
-
+    const { routes, index } = this.props.navigation.state;
     const ActiveScreen = this.props.router.getComponentForState(
       this.props.navigation.state
     );
@@ -57,27 +48,19 @@ class CustomDrawerView extends Component {
     return (
       <ScalingDrawer
         ref={ref => this._drawer = ref}
-        content={<LeftMenu
-          drawer={this._drawer}
-          navigation={this.props.navigation}
-        />}
+        content={<LeftMenu navigation={this.props.navigation}/>}
         {...defaultScalingDrawerConfig}
+        onClose={() => console.log('close')}
+        onOpen={() => console.log('open')}
       >
         <ActiveScreen
           navigation={addNavigationHelpers({
             ...this.props.navigation,
             state: routes[index],
             openDrawer: () => this._drawer.open(),
-            closeDrawer: () => this._drawer.close(),
           })}
         />
       </ScalingDrawer>
     )
   }
 }
-
-const CustomDrawer = createNavigationContainer(
-  createNavigator(AppointmentsRouter)(CustomDrawerView)
-);
-
-export default () => <CustomDrawer />;

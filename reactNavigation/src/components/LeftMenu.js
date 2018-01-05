@@ -57,7 +57,7 @@ class LeftMenu extends Component {
         <View style={styles.menu}>
           <TouchableOpacity
             style={styles.col}
-            onPress={}
+            onPress={ () => {} }
             activeOpacity={0.6}
           >
             <Icon
@@ -66,27 +66,29 @@ class LeftMenu extends Component {
             />
             <Text style={styles.menuTxt}>Home</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.col}
-            onPress={}
+            onPress={ () => this.onNavigate('ListServicesScreen') }
             activeOpacity={0.6}
           >
             <Icon
               name={"user"}
               style={styles.icon}
             />
-            <Text style={styles.menuTxt}>Profile</Text>
+            <Text style={styles.menuTxt}>Services</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={[styles.col, {borderBottomWidth: 1}]}
-            onPress={}
+            onPress={ () => this.onNavigate('AppointmentsScreen') }
             activeOpacity={0.6}
           >
             <Icon
               name={"trophy"}
               style={styles.icon}
             />
-            <Text style={styles.menuTxt}>Greteractions</Text>
+            <Text style={styles.menuTxt}>Appointments</Text>
           </TouchableOpacity>
 
         </View>
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
   },
   settings: {
     fontSize: 30,
-    color: "#fff",
+    color: "black",
     marginLeft: 15
   },
   profilePic: {
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 45,
-    color: "#fff"
+    color: "black"
   },
   col: {
     flexDirection: "row",
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
   },
   menuTxt: {
     fontSize: 16,
-    color: "#fff",
+    color: "black",
     paddingLeft: 10
   },
   profileInfo: {
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    color: "#fff"
+    color: "black"
   }
 });
 

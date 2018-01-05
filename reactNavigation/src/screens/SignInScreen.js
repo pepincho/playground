@@ -14,7 +14,7 @@ export default class SignInScreen extends Component<{}> {
   };
 
   handleGoToServicesPress = () => {
-    this.props.navigation.navigate('Tabs', {}, null);
+    this.props.navigation.navigate('ListServicesScreen', {}, null);
   };
 
   render() {

@@ -4,7 +4,7 @@ import {
   Text,
   View
 } from 'react-native';
-
+import Icon from 'react-native-vector-icons/EvilIcons';
 
 export default class ListServicesScreen extends Component<{}> {
 
@@ -17,6 +17,12 @@ export default class ListServicesScreen extends Component<{}> {
 
     return (
       <View style={styles.container}>
+
+        <Icon name={"navicon"}
+              style={styles.bar}
+              onPress={() => this.props.navigation.openDrawer()}
+        />
+
         <Text style={styles.welcome}>
           List Services SCREEN!
         </Text>

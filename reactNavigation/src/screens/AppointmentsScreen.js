@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+
 } from 'react-native';
+import Icon from 'react-native-vector-icons/EvilIcons';
 
 import CustomTabBar from '../components/CustomTabBar';
 
@@ -26,6 +28,11 @@ export default class AppointmentsScreen extends Component<{}> {
 
     return (
       <View style={styles.container}>
+        <Icon name={"navicon"}
+              style={styles.bar}
+              onPress={() => this.props.navigation.openDrawer()}
+        />
+
         <Text style={styles.welcome}>
           Appointments SCREEN!
         </Text>

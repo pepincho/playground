@@ -6,7 +6,22 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
+import CustomTabBar from '../components/CustomTabBar';
+
+import CommonStyles from '../styles/CommonStyles';
+import {
+  deviceHeight,
+  NAV_HEIGHT,
+  TAB_HEIGHT,
+  STATUSBAR_HEIGHT
+} from '../styles/variables';
+
+
 export default class ListServicesScreen extends Component<{}> {
+
+  constructor(props) {
+    super(props);
+  }
 
   handleGoToBookAppointment = () => {
     this.props.navigation.navigate('BookAppointmentScreen', {}, null);
@@ -34,12 +49,43 @@ export default class ListServicesScreen extends Component<{}> {
           Go to Book Appointment Screen...
         </Text>
 
+        <CustomTabBar
+          navigation={this.props.navigation}
+          isActive='tabOne'
+        />
+
       </View>
     );
   }
 }
 
+ListServicesScreen.navigationOptions = {
+  tabBarVisible: false,
+};
+
+
+const ELEMENT_HEIGHT = 430;
+const spaceHeight = deviceHeight - (NAV_HEIGHT + TAB_HEIGHT + ELEMENT_HEIGHT);
+
 const styles = StyleSheet.create({
+  titleBox: {
+    marginTop: spaceHeight * 0.12,
+    paddingHorizontal: 27,
+  },
+  fullField: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingHorizontal: 15,
+    marginTop: spaceHeight * 0.1,
+  },
+  colMainLeft: {
+    flex: 1,
+    marginRight: 8,
+  },
+  colMainRight: {
+    flex: 1,
+    marginLeft: 8,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

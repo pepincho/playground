@@ -5,6 +5,8 @@ import {
   View
 } from 'react-native';
 
+import { createAppointment } from '../actions/book';
+
 
 export default class BookAppointmentScreen extends Component<{}> {
 
@@ -18,8 +20,11 @@ export default class BookAppointmentScreen extends Component<{}> {
           Book Appointment SCREEN!
         </Text>
 
-        <Text style={styles.welcome}>
-          {this.props.navigation.state.params.name}
+        <Text
+          style={styles.welcome}
+          onPress={ createAppointment.bind(this, this.props.navigation) }
+        >
+          Book {this.props.navigation.state.params.name}
         </Text>
 
         <Text

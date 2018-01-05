@@ -28,6 +28,10 @@ export default class ListServicesScreen extends Component<{}> {
     this.props.navigation.navigate('BookAppointmentScreen', {name}, null);
   };
 
+  nav() {
+    return this.props.navigation;
+  }
+
 
   render() {
 

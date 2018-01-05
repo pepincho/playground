@@ -3,16 +3,24 @@ import React, {
 } from 'react';
 import {
   View,
-  // Image,
+  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  TouchableHighlight,
+  Platform,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
-// import ImagesUrl from '../static/Images';
-const { width, height } = Dimensions.get('window');
+import CommonStyles from '../styles/CommonStyles';
+import {
+  deviceWidth,
+  deviceHeight,
+  colors,
+  fontSize,
+  // fontFamily,
+} from '../styles/variables';
 
 import { NavigationActions } from 'react-navigation'
 
@@ -24,6 +32,7 @@ const resetAction = (routeName) => NavigationActions.reset({
   ]
 });
 
+
 class LeftMenu extends Component {
   constructor(props) {
     super(props);
@@ -34,132 +43,207 @@ class LeftMenu extends Component {
   }
 
   render() {
-    // const imgUrl = this.props.navigation.state.routes[0].routeName === "Home" ? ImagesUrl.bgOne :
-    //   this.props.navigation.state.routes[0].routeName === "Profile" ? ImagesUrl.bgTwo : ImagesUrl.bgThree;
+    let isActive = ''; //this.state.isActive;
 
     return (
       <View style={styles.container}>
+        <View style={styles.userInfo}>
 
-        <View style={styles.profile}>
-          <View style={styles.group}>
-            <View style={styles.imgWrapper}>
-
-            </View>
-            <Icon
-              name={"gear"}
-              style={styles.settings}
-            />
-          </View>
-          <View style={styles.profileInfo}>
-            <Text style={styles.name}>Petar Ivanov</Text>
-          </View>
+          <Text style={styles.name}>
+            Petar Ivanov
+          </Text>
+          <Text style={styles.balance}>
+            Balance: $1,359.00
+          </Text>
         </View>
+
         <View style={styles.menu}>
-          <TouchableOpacity
-            style={styles.col}
-            onPress={ () => {} }
-            activeOpacity={0.6}
-          >
-            <Icon
-              name={"archive"}
-              style={styles.icon}
-            />
-            <Text style={styles.menuTxt}>Home</Text>
-          </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.col}
-            onPress={ () => this.onNavigate('ListServicesScreen') }
-            activeOpacity={0.6}
-          >
-            <Icon
-              name={"user"}
-              style={styles.icon}
-            />
-            <Text style={styles.menuTxt}>Services</Text>
-          </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.col, {borderBottomWidth: 1}]}
-            onPress={ () => this.onNavigate('AppointmentsScreen') }
-            activeOpacity={0.6}
-          >
-            <Icon
-              name={"trophy"}
-              style={styles.icon}
-            />
-            <Text style={styles.menuTxt}>Appointments</Text>
-          </TouchableOpacity>
+          <TouchableHighlight
+            underlayColor='#efefef'
+            style={styles.itemBox}
+            onPress={ this._handleClickHome.bind(this) }>
+            <View style={styles.itemBox}>
+              {
+                (() => {
+                  if (isActive == 'list_services') {
+                    return (
+                      <View style={styles.activeItem} />
+                    )
+                  }
+                })()
+              }
+              <Text
+                style={[
+                  styles.menuText,
+                  isActive == 'list_services' && styles.activeMenuText
+                ]}
+              >
+                SERVICES
+              </Text>
+            </View>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            underlayColor='#efefef'
+            style={styles.itemBox}
+            onPress={ this._handleClickDoctors.bind(this) }>
+            <View style={styles.itemBox}>
+              {
+                (() => {
+                  if (isActive == 'my_appointments') {
+                    return (
+                      <View style={styles.activeItem} />
+                    )
+                  }
+                })()
+              }
+              <Text
+                style={[
+                  styles.menuText,
+                  isActive == 'my_appointments' && styles.activeMenuText
+                ]}
+              >
+                APPOINTMENTS
+              </Text>
+            </View>
+          </TouchableHighlight>
+
 
         </View>
-
       </View>
     );
   }
+
+  // PRIVATE
+  _handleClickHome() {
+    this.setState({isActive:'list_services'});
+    this.props.navigation.navigate('ListServicesScreen');
+    this.props.drawer.close()
+  }
+
+  // _handleClickDrug() {
+  //   this.setState({isActive:'drug'});
+  //   this.props.navigation.navigate('DrugScreen');
+  //   this.props.drawer.close()
+  // }
+
+  _handleClickDoctors() {
+    this.setState({isActive:'my_appointments'});
+    this.props.navigation.navigate('AppointmentsScreen');
+    this.props.drawer.close()
+  }
+
+  // _handleClickDashboard() {
+  //   this.setState({isActive:'dashboard'});
+  //   this.props.navigation.navigate('DashboardTestIndicatorsScreen');
+  //   this.props.drawer.close()
+  // }
+
+  _handleClickProfile() {
+    this.setState({isActive:'profile'});
+    this.props.navigation.navigate('UserProfileScreen');
+    this.props.drawer.close()
+  }
+
+  _handleClickServices() {
+    this.setState({isActive:'list_services'});
+    this.props.drawer.close()
+  }
+
+  // _handleClickNewHealthy() {
+  //   this.setState({isActive:'newHealthy'});
+  //   this.props.navigation.navigate('HealerBlogsScreen');
+  //   this.props.drawer.close()
+  // }
 }
+
+const ELEMENT_HEIGHT = 530;
+const spaceHeight = deviceHeight - ELEMENT_HEIGHT;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "transparent",
-    paddingLeft: 30
+    flex: 1,
+    width: deviceWidth - 70,
+    backgroundColor: '#fff',
   },
-  profile: {
-    marginLeft: width * 0.16,
-    marginTop: 50
+  userInfo: {
+    height: 130,
+    marginTop: spaceHeight * 0.46,
+    marginBottom: spaceHeight * 0.35,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
-  group: {
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  imgWrapper: {
-    width: 129,
-    height: 129,
-    borderWidth: 2,
-    borderRadius: 120,
-    borderColor: 'rgba(255, 255, 255, 0.4)',
-  },
-  settings: {
-    fontSize: 30,
-    color: "black",
-    marginLeft: 15
-  },
-  profilePic: {
-    width: 125,
-    height: 125,
-    borderRadius: 62.5,
-  },
-  imgBg: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width,
-    height
-  },
-  icon: {
-    fontSize: 45,
-    color: "black"
-  },
-  col: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingTop: 10,
-    paddingBottom: 10,
-    borderTopWidth: 1,
-    borderColor: "#fff"
-  },
-  menuTxt: {
-    fontSize: 16,
-    color: "black",
-    paddingLeft: 10
-  },
-  profileInfo: {
-    paddingTop: 10,
-    paddingBottom: 15,
+  avatar: {
+    height: 70,
+    width: 70,
+    borderRadius: 200,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.6)',
+        shadowOffset: {
+          width: 0,
+          height: 10
+        },
+        shadowRadius: 5,
+        shadowOpacity: 0.1
+      },
+      android: {
+        elevation: 12,
+      },
+    }),
   },
   name: {
-    fontSize: 18,
-    color: "black"
-  }
+    marginTop: 15,
+    marginBottom: 5,
+    color: colors.black,
+    fontSize: fontSize.itemHeader,
+    // fontFamily: fontFamily.medium,
+  },
+  balance: {
+    color: colors.lightGrey,
+    fontSize: fontSize.small,
+    // fontFamily: fontFamily.regular,
+  },
+  menu: {
+    height: 400,
+  },
+  itemBox: {
+    flexDirection: 'row',
+    height: 45,
+    alignItems: 'center',
+  },
+  activeItem: {
+    width: 5,
+    height: 45,
+    marginLeft: 0.2,
+    backgroundColor: 'rgb(75,102,234)',
+    borderRadius: 12,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.2)',
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1
+      },
+      android: {
+        elevation: 12,
+      },
+    }),
+  },
+  menuText: {
+    marginLeft: 30,
+    color: 'rgb(150,150,150)',
+    fontSize: 15,
+    // fontFamily: 'Poppins-Regular',
+  },
+  activeMenuText: {
+    color: 'rgb(130,160,246)',
+  },
 });
 
 export default LeftMenu;

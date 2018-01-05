@@ -10,10 +10,16 @@ export default class BookAppointmentScreen extends Component<{}> {
 
   render() {
 
+    console.log('params, ', this.props.navigation.state.params);
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Book Appointment SCREEN!
+        </Text>
+
+        <Text style={styles.welcome}>
+          {this.props.navigation.state.params.name}
         </Text>
 
         <Text

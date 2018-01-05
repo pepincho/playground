@@ -23,8 +23,9 @@ export default class ListServicesScreen extends Component<{}> {
     super(props);
   }
 
-  handleGoToBookAppointment = () => {
-    this.props.navigation.navigate('BookAppointmentScreen', {}, null);
+  handleGoToBookAppointment = (name) => {
+    // console.log('item >>', item)
+    this.props.navigation.navigate('BookAppointmentScreen', {name}, null);
   };
 
 
@@ -44,9 +45,16 @@ export default class ListServicesScreen extends Component<{}> {
 
         <Text
           style={styles.instructions}
-          onPress={this.handleGoToBookAppointment}
+          onPress={this.handleGoToBookAppointment.bind(this, "PETAR")}
         >
-          Go to Book Appointment Screen...
+          Book PETAR Appointment Screen...
+        </Text>
+
+        <Text
+          style={styles.instructions}
+          onPress={this.handleGoToBookAppointment.bind(this, "ASEN")}
+        >
+          Book ASEN Appointment Screen...
         </Text>
 
         <CustomTabBar

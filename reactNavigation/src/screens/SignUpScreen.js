@@ -10,7 +10,7 @@ import {
 export default class SignUpScreen extends Component<{}> {
 
   handleGoToSignInPress = () => {
-    this.props.navigation.navigate('SignInScreen', {}, null);
+    this.props.navigation.goBack();
   };
 
   render() {

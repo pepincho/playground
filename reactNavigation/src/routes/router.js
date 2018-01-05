@@ -29,15 +29,9 @@ export const AuthStack = StackNavigator(
     },
     SignInScreen: {
       screen: SignInScreen,
-      // navigationOptions: ({navigation}) => ({
-      //   header: null,
-      // }),
     },
     SignUpScreen: {
       screen: SignUpScreen,
-      // navigationOptions: ({navigation}) => ({
-      //   header: null,
-      // }),
     },
   },
   {
